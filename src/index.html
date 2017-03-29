@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="app.appcache">
 
 <head>
     <!-- Basic Page Needs
@@ -113,7 +113,11 @@
             <div class="one columns aligncenter">&nbsp;</div>
           </div>
         </div>
-        <div class="optionbar row"><div class="footer aligncenter">v0.1</div></div>
+        <div class="optionbar row footer">
+        <div class="two columns"><img src="images/wifi.svg" width="24" height="24" /></div>
+        <div class="eight columns"><div class="aligncenter">v0.1.3</div></div>
+        <div class="two columns">&nbsp;</div>
+        </div>
     </div>
     <!-- custom script  -->
     <script type="text/javascript">
@@ -210,9 +214,61 @@
 
 
 
+         
+
+
+          var appVersion = "0.1.3";
+
+          // // var liveVersionPath = "scripts/version.json?callback=compareVersion";
+          // var liveVersionPath = "scripts/version.json";
+
+          // var vdata = "";
+          // function compareVersion(data)
+          // {
+              
+          //     vdata = JSON.parse(data);
+          //     var serverVersion = vdata.version;
+          //     console.log('here ' + vdata.version);
+          //     if(serverVersion != appVersion){
+          //       alert("New version ("+serverVersion+") of the app available");
+          //     }
+          // }
+
+          
+
+          // function callAjax(url, callback){
+          //       var xmlhttp;
+          //       // compatible with IE7+, Firefox, Chrome, Opera, Safari
+          //       xmlhttp = new XMLHttpRequest();
+          //       xmlhttp.onreadystatechange = function(){
+          //           if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          //               callback(xmlhttp.responseText);
+          //           }
+          //       }
+          //       xmlhttp.open("GET", url, true);
+          //       xmlhttp.send();
+          //   }
+
+
+          // window.document.onload = function(e){ 
+
+          // }
+
+          window.applicationCache.addEventListener('updateready', function(e){
+              window.location.reload();
+          });
+
+
+          // var script = document.createElement('script');
+          // script.src = liveVersionPath;
+
+          // document.getElementsByTagName('head')[0].appendChild(script);
+          // console.log('w.d.onload');
+
+          // callAjax(liveVersionPath, compareVersion);
+
           changeLevel();  //To intiate assets
           nextRandomImg();  // load first random image
-
 
     </script>
     <!-- End Document
