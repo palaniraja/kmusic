@@ -1,39 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Kindle Music</title>
-  <meta name="description" content="Kindle Music - Offline friendly webpage for beginners to practise keyboard">
-  <meta name="author" content="palaniraja">
-
-  <!-- Mobile Specific Metas
+    <meta charset="utf-8">
+    <title>Kindle Music</title>
+    <meta name="description" content="Kindle Music - Offline friendly webpage for beginners to practise keyboard">
+    <meta name="author" content="palaniraja">
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <!-- CSS
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-
-  <!-- Favicon
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Custom css -->
+    <style type="text/css">
+    .container {
+        padding: 0.25rem;
+    }
+    
+    .navbar {
+        border-bottom: 1px solid darkgray;
+    }
 
+    .pagecontent{
+      height: 760px;
+    }
+
+    .aligncenter{
+      text-align: center;
+    }
+
+    .footer{
+        border-top: 1px solid darkgray; 
+    }
+
+    .stage{
+      border: 1px solid white;
+      height: 700px;
+    }
+
+    .cardImage{
+      margin: 0 auto;
+    }
+
+    .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
+      font-size: 18px;
+    }
+
+    .note{
+      margin-top: 35%;
+    }
+
+
+    .cardImage{
+      height: 350px;
+      width: 350px;
+      margin-top:175px;
+      margin-left: 204px;
+    }
+    </style>
 </head>
+
 <body>
-
-  <!-- Primary Page Layout
+    <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <h1>Kindle Music </h1>
-    <p>Hello world!</p>
-  </div>
+    <div class="container u-full-width">
+        <h5 class="navbar aligncenter">Kindle Music </h5>
+        <div class="pagecontent">
+          <div class="stage">
+            <img id="noteImg" class="cardImage" src="images/notes/c4.svg" align="center" />
+            <!-- <div class="note"><h2 id="notename" class="aligncenter">C4</h2></div> -->
+          </div>
+           <div class="optionbar row">
+           <div class="one columns aligncenter">&nbsp;</div>
+            <div class="two columns aligncenter"><input type="button" value="Prev" onclick="nextRandomImg();"></div>
+            <div class="six columns aligncenter">&nbsp;</div>
+            <div class="two columns aligncenter"><input type="button" value="Next" onclick="nextRandomImg();"></div>
+            <div class="one columns aligncenter">&nbsp;</div>
+          </div>
+        </div>
+        <div class="optionbar row"><div class="footer aligncenter">v0.1</div></div>
+    </div>
+    <!-- custom script  -->
+    <script type="text/javascript">
+          var app = {};
 
-<!-- End Document
+          app.menu = [{
+              id: "flashCard",
+              title: "Flashcard"
+          }, {
+              id: 'randomKeys',
+              title: 'Random Keys'
+          }];
+
+          var noteImages = ["images/notes/c4.svg", "images/notes/f3.svg"];
+          
+
+          document.getElementById('noteImg').onclick = nextRandomImg;
+
+          function nextRandomImg(){
+            var randIndex = Math.floor(Math.random() * noteImages.length);
+            document.getElementById('noteImg').src = noteImages[randIndex];
+          }
+
+
+    </script>
+    <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
+
 </html>
