@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" manifest="app.appcache">
+
+<head>
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Kindle Music</title>
+    <meta name="description" content="Kindle Music - Offline friendly webpage for beginners to practise keyboard">
+    <meta name="author" content="palaniraja">
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Custom css -->
+    <style type="text/css">
+
+    /* overriding skeleton class*/
+     .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
+      font-size: 18px;
+      height: 58px;
+    }
+
+     select{
+      height: 58px;
+     }
+
+    label{
+      display: inline;
+    }
+
+
+    /* app specific*/
+    .container {
+        padding: 0.25rem;
+    }
+    
+    .navbar {
+        border-bottom: 1px solid darkgray;
+    }
+
+    .pagecontent{
+      height: 760px;
+    }
+
+    .aligncenter{
+      text-align: center;
+    }
+
+    .footer{
+        border-top: 1px solid darkgray; 
+    }
+
+    .stage{
+      border: 1px solid white;
+      height: 670px;
+    }
+
+    .cardImage{
+      margin: 0 auto;
+    }
+
+   
+
+    .note{
+      margin-top: 35%;
+    }
+
+
+    .cardImage{
+      height: 560px;
+      width: 350px;
+      margin-top:75px;
+      margin-left: 204px;
+    }
+
+    input.buttonWoBorder{
+      border: 1px solid white;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container u-full-width">
+        <h5 class="navbar aligncenter">Kindle Music </h5>
+        <div class="pagecontent">
+          <div class="stage">
+            <img id="noteImg" class="cardImage" src="images/notes/cheat.svg" align="center" />
+            <!-- <div class="note"><h2 id="notename" class="aligncenter">C4</h2></div> -->
+          </div>
+           <div class="optionbar row">
+           <!-- <div class="one columns aligncenter">&nbsp;</div> -->
+            <div class="seven columns">
+              <input type="button" value="Level" class="buttonWoBorder" disabled="disabled">
+              <select id="level">
+                <option value="1">G - 1</option>
+                <option value="2">G - 2</option>
+                <option value="3">G - 3</option>
+                <option value="4">G - 4</option>
+              </select>
+              <input type="button" value="Combine" onclick="toggleCombine();"> <input type="checkbox" id="combine">
+            </div>
+            <div class="two columns aligncenter"><input type="button" value="Hint" onclick="showCheat();"></div>
+            <div class="two columns aligncenter"><input type="button" value="Next" onclick="nextRandomImg();"></div>
+            <div class="one columns aligncenter">&nbsp;</div>
+          </div>
+        </div>
+        <div class="optionbar row footer">
+        <div class="two columns"><img src="images/wifi.svg" width="24" height="24" /></div>
+        <div class="eight columns"><div class="aligncenter">v0.1.3</div></div>
+        <div class="two columns">&nbsp;</div>
+        </div>
+    </div>
+    <!-- custom script  -->
+    <script type="text/javascript">
+          // var app = {};
+
+          // app.menu = [{
+          //     id: "flashCard",
+          //     title: "Flashcard"
+          // }, {
+          //     id: 'randomKeys',
+          //     title: 'Random Keys'
+          // }];
+
+          var imgPath = "images/notes/";
+
+          var noteImages = [];
+
+          
+          var currentLevel  = 1;
+          var levelCombined = false;
+
+          var noteImg = document.getElementById('noteImg');    
+          var combineChk =  document.getElementById('combine');
+
+          noteImg.onclick = nextRandomImg;
+
+          document.getElementById('level').onchange = changeLevel;
+          document.getElementById('combine').onchange = changeLevel;
+
+
+
+
+          function toggleCombine(){
+           combineChk.checked = !combineChk.checked; 
+           changeLevel();
+          }
+
+          function nextRandomImg(){
+            var randIndex = Math.floor(Math.random() * noteImages.length);
+            showImage(noteImages[randIndex]);
+          }
+
+          function showImage(imgname){
+              noteImg.src = imgPath + imgname;
+          }
+
+          function showCheat(){
+            showImage("cheat.svg");
+          }
+
+
+
+
+          function changeLevel(){
+            console.log('change level');
+            currentLevel = parseInt(document.getElementById('level').value);
+            levelCombined = document.getElementById('combine').checked;
+            console.log('current level: ' + currentLevel + ' combine: '+ levelCombined);
+            noteImages = [];
+
+             if((currentLevel >=1 && levelCombined) || (currentLevel == 1 && !levelCombined)){
+                noteImages.push(['c4.svg']);
+                noteImages.push(['d4.svg']);
+                noteImages.push(['e4.svg']);
+                noteImages.push(['f4.svg']);
+                noteImages.push(['g4.svg']);
+                noteImages.push(['a4.svg']);
+              }
+
+              if((currentLevel >=2 && levelCombined) || (currentLevel == 2 && !levelCombined)){
+                  noteImages.push(['b4.svg']);
+                  noteImages.push(['c5.svg']);
+                  noteImages.push(['d5.svg']);
+                  noteImages.push(['e5.svg']);
+                  noteImages.push(['f5.svg']);
+                }
+
+              if((currentLevel >=3 && levelCombined) || (currentLevel == 3 && !levelCombined)){
+                  noteImages.push(['g5.svg']);
+                  noteImages.push(['a5.svg']);
+                  noteImages.push(['b5.svg']);
+                  noteImages.push(['c6.svg']);
+                  
+              }
+
+              if((currentLevel >=4 && levelCombined) || (currentLevel == 4 && !levelCombined)){
+                  noteImages.push(['d4.svg']);
+                  noteImages.push(['b3.svg']);
+                  noteImages.push(['a3.svg']);
+                  noteImages.push(['g3.svg']);
+              }
+
+          }
+
+
+
+         
+
+
+          var appVersion = "0.1.3";
+
+          // // var liveVersionPath = "scripts/version.json?callback=compareVersion";
+          // var liveVersionPath = "scripts/version.json";
+
+          // var vdata = "";
+          // function compareVersion(data)
+          // {
+              
+          //     vdata = JSON.parse(data);
+          //     var serverVersion = vdata.version;
+          //     console.log('here ' + vdata.version);
+          //     if(serverVersion != appVersion){
+          //       alert("New version ("+serverVersion+") of the app available");
+          //     }
+          // }
+
+          
+
+          // function callAjax(url, callback){
+          //       var xmlhttp;
+          //       // compatible with IE7+, Firefox, Chrome, Opera, Safari
+          //       xmlhttp = new XMLHttpRequest();
+          //       xmlhttp.onreadystatechange = function(){
+          //           if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          //               callback(xmlhttp.responseText);
+          //           }
+          //       }
+          //       xmlhttp.open("GET", url, true);
+          //       xmlhttp.send();
+          //   }
+
+
+          // window.document.onload = function(e){ 
+
+          // }
+
+          window.applicationCache.addEventListener('updateready', function(e){
+              window.location.reload();
+          });
+
+
+          // var script = document.createElement('script');
+          // script.src = liveVersionPath;
+
+          // document.getElementsByTagName('head')[0].appendChild(script);
+          // console.log('w.d.onload');
+
+          // callAjax(liveVersionPath, compareVersion);
+
+          changeLevel();  //To intiate assets
+          nextRandomImg();  // load first random image
+
+    </script>
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
