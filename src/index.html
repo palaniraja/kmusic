@@ -20,6 +20,15 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Custom css -->
     <style type="text/css">
+
+    /* overriding skeleton class*/
+     .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
+      font-size: 18px;
+      height: 58px;
+    }
+
+
+    /* app specific*/
     .container {
         padding: 0.25rem;
     }
@@ -42,16 +51,14 @@
 
     .stage{
       border: 1px solid white;
-      height: 700px;
+      height: 670px;
     }
 
     .cardImage{
       margin: 0 auto;
     }
 
-    .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
-      font-size: 18px;
-    }
+   
 
     .note{
       margin-top: 35%;
@@ -59,9 +66,9 @@
 
 
     .cardImage{
-      height: 350px;
+      height: 560px;
       width: 350px;
-      margin-top:175px;
+      margin-top:75px;
       margin-left: 204px;
     }
     </style>
@@ -74,13 +81,14 @@
         <h5 class="navbar aligncenter">Kindle Music </h5>
         <div class="pagecontent">
           <div class="stage">
-            <img id="noteImg" class="cardImage" src="images/notes/c4.svg" align="center" />
+            <img id="noteImg" class="cardImage" src="images/notes/cheat.svg" align="center" />
             <!-- <div class="note"><h2 id="notename" class="aligncenter">C4</h2></div> -->
           </div>
            <div class="optionbar row">
            <div class="one columns aligncenter">&nbsp;</div>
-            <div class="two columns aligncenter"><input type="button" value="Prev" onclick="nextRandomImg();"></div>
-            <div class="six columns aligncenter">&nbsp;</div>
+            <div class="two columns aligncenter">Staff: G</div>
+            <div class="four columns aligncenter">&nbsp;</div>
+            <div class="two columns aligncenter"><input type="button" value="Hint" onclick="showCheat();"></div>
             <div class="two columns aligncenter"><input type="button" value="Next" onclick="nextRandomImg();"></div>
             <div class="one columns aligncenter">&nbsp;</div>
           </div>
@@ -99,15 +107,28 @@
               title: 'Random Keys'
           }];
 
-          var noteImages = ["images/notes/c4.svg", "images/notes/f3.svg"];
+          var imgPath = "images/notes/";
+
+          var noteImages = ["a3.svg", "a4.svg", "a5.svg", "b3.svg", "b4.svg", "b5.svg", "c4.svg", "c5.svg", "c6.svg", "d4.svg", "d5.svg", "e4.svg", "e5.svg", "f4.svg", "f5.svg", "g3.svg", "g4.svg", "g5.svg"];
           
 
           document.getElementById('noteImg').onclick = nextRandomImg;
 
           function nextRandomImg(){
             var randIndex = Math.floor(Math.random() * noteImages.length);
-            document.getElementById('noteImg').src = noteImages[randIndex];
+            showImage(noteImages[randIndex]);
           }
+
+          function showImage(imgname){
+              document.getElementById('noteImg').src = imgPath + imgname;
+          }
+
+          function showCheat(){
+            showImage("cheat.svg");
+          }
+
+
+          nextRandomImg();
 
 
     </script>
