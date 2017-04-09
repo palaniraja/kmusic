@@ -1,5 +1,6 @@
 # Kindle Music
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/palaniraja)
 
 Visit [http://www.palaniraja.com/kmusic/](http://www.palaniraja.com/kmusic/) from your Kindle Experimental browser. You can also bookmark the page for quick access.
 
